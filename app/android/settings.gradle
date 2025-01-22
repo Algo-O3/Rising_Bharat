@@ -1,6 +1,21 @@
-pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
-plugins { id("com.facebook.react.settings") }
-extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }
-rootProject.name = 'app'
+pluginManagement {
+    includeBuild("../node_modules/@react-native/gradle-plugin")
+}
+
+plugins {
+    id("com.facebook.react.settings")
+}
+
+extensions.configure(com.facebook.react.ReactSettingsExtension) { ex -> 
+    ex.autolinkLibrariesFromCommand()
+}
+
+rootProject.name = 'app' // Ensure this matches your desired project name
+
+// Include the main `app` folder as a module
 include ':app'
+
+project(':app').projectDir = new File(rootDir, 'app') // Ensure it points to the correct folder
+
+// Include the Gradle plugin for React Native
 includeBuild('../node_modules/@react-native/gradle-plugin')
